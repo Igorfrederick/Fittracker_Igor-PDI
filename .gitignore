@@ -1,0 +1,53 @@
+# ===========================================
+# FitTracker - Git Ignore
+# ===========================================
+
+# Dependências
+node_modules/
+*/node_modules/
+
+# Variáveis de ambiente (NUNCA commitar!)
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# IDEs e editores
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Build e dist
+dist/
+build/
+*.tsbuildinfo
+
+# Cobertura de testes
+coverage/
+.nyc_output/
+
+# Cypress
+cypress/videos/
+cypress/screenshots/
+
+# Temporários
+tmp/
+temp/
+*.tmp
+
+# Cache
+.cache/
+.npm/
+.eslintcache

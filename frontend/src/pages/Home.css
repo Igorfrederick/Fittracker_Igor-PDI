@@ -1,0 +1,165 @@
+/**
+ * Estilos: Página Home
+ */
+
+.home {
+  animation: fadeIn var(--transition-normal);
+}
+
+/* Header */
+.home-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-xl);
+}
+
+.home-titulo {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-xs);
+}
+
+.home-subtitulo {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Stats Grid */
+.home-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Seções */
+.home-section {
+  margin-bottom: var(--spacing-xl);
+}
+
+.home-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-md);
+}
+
+.home-section-titulo {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.home-section-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.home-section-link:hover {
+  color: var(--primary-dark);
+}
+
+/* Treinos por Tipo */
+.home-tipos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background-color: var(--bg-primary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.home-tipo-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.home-tipo-quantidade {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* Lista de Treinos */
+.home-treinos-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.home-treino-card {
+  display: block;
+  padding: var(--spacing-lg);
+  background-color: var(--bg-primary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.home-treino-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.home-treino-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-sm);
+}
+
+.home-treino-data {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.home-treino-nome {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.home-treino-info {
+  display: flex;
+  gap: var(--spacing-md);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .home-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .home-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+
+  .home-header .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .home-treinos-lista {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,258 @@
+/**
+ * Estilos: Formulário de Treino
+ */
+
+.form-treino {
+  animation: fadeIn var(--transition-normal);
+}
+
+.form-erro {
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--border-radius);
+  color: var(--danger);
+  font-size: 0.875rem;
+}
+
+/* Seções */
+.form-section {
+  margin-bottom: var(--spacing-xl);
+}
+
+.form-section.card {
+  padding: var(--spacing-xl);
+}
+
+.form-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-lg);
+}
+
+.form-section-titulo {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 var(--spacing-lg) 0;
+}
+
+.form-section-header .form-section-titulo {
+  margin-bottom: 0;
+}
+
+/* Grid de Formulário */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Exercícios Vazio */
+.form-exercicios-vazio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2xl);
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.form-exercicios-vazio p {
+  margin-bottom: var(--spacing-md);
+}
+
+/* Lista de Exercícios */
+.form-exercicios-lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.form-exercicio-card {
+  overflow: hidden;
+}
+
+.form-exercicio-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-lg);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.form-exercicio-header:hover {
+  background-color: var(--bg-secondary);
+}
+
+.form-exercicio-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.form-exercicio-grip {
+  color: var(--gray-400);
+}
+
+.form-exercicio-numero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: var(--primary);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--border-radius-full);
+}
+
+.form-exercicio-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.form-exercicio-nome {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.form-exercicio-header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  color: var(--text-muted);
+}
+
+.form-exercicio-series {
+  font-size: 0.875rem;
+}
+
+/* Conteúdo do Exercício */
+.form-exercicio-content {
+  padding: var(--spacing-lg);
+  border-top: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
+}
+
+/* Séries */
+.form-series {
+  margin-top: var(--spacing-lg);
+}
+
+.form-series-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-md);
+  font-weight: 500;
+}
+
+.form-series-lista {
+  background-color: var(--bg-primary);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.form-series-cabecalho {
+  display: grid;
+  grid-template-columns: 40px 1fr 1fr 40px;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--gray-100);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.form-serie-row {
+  display: grid;
+  grid-template-columns: 40px 1fr 1fr 40px;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.form-serie-row:last-child {
+  border-bottom: none;
+}
+
+.form-serie-numero {
+  font-weight: 500;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.form-serie-row input {
+  padding: var(--spacing-sm);
+  text-align: center;
+}
+
+/* Ações do Exercício */
+.form-exercicio-acoes {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border-color);
+}
+
+/* Botões de Ação do Form */
+.form-acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-md);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--border-color);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-section-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-md);
+  }
+
+  .form-series-cabecalho,
+  .form-serie-row {
+    grid-template-columns: 30px 1fr 1fr 30px;
+    gap: var(--spacing-sm);
+  }
+
+  .form-acoes {
+    flex-direction: column-reverse;
+  }
+
+  .form-acoes .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
