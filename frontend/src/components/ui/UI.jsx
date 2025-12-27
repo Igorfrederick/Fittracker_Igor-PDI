@@ -163,7 +163,7 @@ export const StatCard = ({
  * Badge colorido para tipo de treino
  * @param {string} tipo - Tipo do treino (A, B, C, etc)
  */
-export const TipoBadge = ({ tipo }) => {
+export const TipoBadge = ({ tipo, dataCy }) => {
   const cores = {
     'A': '#3b82f6',
     'B': '#22c55e',
@@ -180,9 +180,10 @@ export const TipoBadge = ({ tipo }) => {
   const cor = cores[tipo?.toUpperCase()] || '#64748b';
 
   return (
-    <span 
+    <span
       className="tipo-badge"
-      style={{ 
+      data-cy={dataCy}
+      style={{
         backgroundColor: `${cor}15`,
         color: cor,
         borderColor: `${cor}30`

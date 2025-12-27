@@ -10,8 +10,8 @@ Aplicação full-stack para rastreamento de treinos, desenvolvida como projeto d
 - ✅ **Visualização detalhada** de cada treino com volume e métricas
 - ✅ **Filtros e busca** por tipo e período
 - ✅ **Responsividade** para uso em dispositivos móveis
+- ✅ **Testes E2E com Cypress** - 87 testes (57 API + 30 UI)
 - 🔄 **Gráficos de evolução** (planejado para versão futura)
-- 🔄 **Testes E2E com Cypress** (planejado para versão futura)
 
 ## 🛠️ Stack Tecnológica
 
@@ -32,6 +32,14 @@ Aplicação full-stack para rastreamento de treinos, desenvolvida como projeto d
 | Axios | 1.x | Cliente HTTP |
 | Lucide React | - | Ícones |
 | date-fns | - | Manipulação de datas |
+
+### Testes
+| Tecnologia | Versão | Uso |
+|------------|--------|-----|
+| Cypress | 13.x | Testes E2E |
+| Faker.js | 9.x | Geração de dados fake |
+| AJV | 8.x | Validação de schemas |
+| @cypress/grep | - | Filtros por tags |
 
 ## 🚀 Como Executar
 
@@ -118,10 +126,26 @@ fittracker/
 │   │   └── App.jsx          # Componente raiz
 │   └── package.json
 │
-├── docs/                    # Documentação técnica
+├── cypress/                # Testes E2E
+│   ├── e2e/
+│   │   ├── treinos/        # 57 testes de API
+│   │   └── treinos-ui/     # 30 testes de UI
+│   ├── support/
+│   │   ├── Commands/       # Comandos customizados
+│   │   ├── Models/         # Models de teste
+│   │   ├── Adapters/       # Adaptadores
+│   │   ├── Library/        # Fábrica de dados fake
+│   │   ├── PageObjects/    # Page Objects (UI)
+│   │   └── Contracts/      # Schemas de validação
+│   └── fixtures/           # Dados estáticos
+│
+├── docs/                   # Documentação técnica
 │   ├── FASE-01-FUNDACAO.md
 │   ├── FASE-02-BACKEND.md
-│   └── FASE-03-FRONTEND.md
+│   ├── FASE-03-FRONTEND.md
+│   ├── RESUMO-TESTES-E2E.md
+│   ├── ESTRUTURA-TESTES-UI.md
+│   └── ROTEIRO-TESTES-CYPRESS.md
 │
 ├── ROADMAP.md              # Planejamento do projeto
 └── README.md
@@ -201,11 +225,21 @@ fittracker/
 
 A pasta `docs/` contém documentação técnica detalhada de cada fase:
 
+### Documentação de Desenvolvimento
+
 | Documento | Conteúdo |
 |-----------|----------|
 | [FASE-01-FUNDACAO.md](docs/FASE-01-FUNDACAO.md) | Setup, estrutura, middlewares, conexão MongoDB |
 | [FASE-02-BACKEND.md](docs/FASE-02-BACKEND.md) | Models, Controllers, Routes, API REST |
 | [FASE-03-FRONTEND.md](docs/FASE-03-FRONTEND.md) | React, componentes, páginas, roteamento |
+
+### Documentação de Testes
+
+| Documento | Conteúdo |
+|-----------|----------|
+| [RESUMO-TESTES-E2E.md](docs/RESUMO-TESTES-E2E.md) | Resumo completo dos testes E2E, arquitetura e ajustes |
+| [ESTRUTURA-TESTES-UI.md](docs/ESTRUTURA-TESTES-UI.md) | Estrutura dos testes de UI, Page Objects e padrões |
+| [ROTEIRO-TESTES-CYPRESS.md](docs/ROTEIRO-TESTES-CYPRESS.md) | Roteiro completo de implementação dos testes |
 
 ## 🎯 Status do Projeto
 
@@ -214,9 +248,9 @@ A pasta `docs/` contém documentação técnica detalhada de cada fase:
 | 1 | Fundação e Setup | ✅ Concluído |
 | 2 | Backend/API | ✅ Concluído |
 | 3 | Frontend React | ✅ Concluído |
-| 4 | Gráficos | 🔄 Planejado |
-| 5 | Polimento | 🔄 Planejado |
-| 6 | Testes Cypress | 🔄 Planejado |
+| 4 | Testes E2E Cypress | ✅ Concluído - 87 testes |
+| 5 | Gráficos | 🔄 Planejado |
+| 6 | Polimento | 🔄 Planejado |
 
 ## 🧪 Scripts Disponíveis
 
@@ -234,6 +268,61 @@ npm run dev    # Servidor de desenvolvimento
 npm run build  # Build de produção
 npm run preview # Preview do build
 ```
+
+### Testes E2E (Cypress)
+
+#### Pré-requisitos para Testes
+- Backend rodando em `http://localhost:3000`
+- Frontend rodando em `http://localhost:5173`
+- MongoDB conectado
+
+#### Comandos de Teste
+
+```bash
+# Modo interativo (recomendado para desenvolvimento)
+npm run cy:open
+
+# Testes de API (headless)
+npm run test:api:all          # Todos os testes de API (57 testes)
+npm run test:api:create       # Testes de criação
+npm run test:api:read         # Testes de leitura
+npm run test:api:update       # Testes de atualização
+npm run test:api:delete       # Testes de exclusão
+
+# Testes de UI (interativo - modo headless não funciona)
+npm run test:ui:navigation    # Testes de navegação (10 testes)
+npm run test:ui:create        # Testes de criação via UI (9 testes)
+npm run test:ui:list          # Testes de listagem (11 testes)
+
+# Testes por tag
+npm run test:smoke            # Apenas smoke tests
+npm run test:negative         # Apenas testes negativos
+
+# Todos os testes
+npm run test:all              # API + UI (87 testes)
+```
+
+#### Estrutura dos Testes
+
+**Testes de API** (57 testes):
+- ✅ `treinosCreate.cy.js` - 11 testes de criação
+- ✅ `treinosRead.cy.js` - 15 testes de leitura
+- ✅ `treinosUpdate.cy.js` - 16 testes de atualização
+- ✅ `treinosDelete.cy.js` - 15 testes de exclusão
+
+**Testes de UI** (30 testes):
+- ✅ `treinosUI_Navigation.cy.js` - 10 testes (10 passing)
+- ✅ `treinosUI_Create.cy.js` - 9 testes (8 passing, 1 skipped)
+- ✅ `treinosUI_List.cy.js` - 11 testes (9 passing, 2 skipped)
+
+**Arquitetura dos Testes**:
+- **Page Objects**: Padrão para testes de UI
+- **Commands**: Comandos customizados reutilizáveis
+- **Models**: Fábrica de objetos de teste
+- **Adapters**: Conversão de dados para API
+- **Contracts**: Validação de schemas com AJV
+
+Para mais detalhes, consulte a [documentação completa de testes](docs/RESUMO-TESTES-E2E.md).
 
 ## 📝 Licença
 

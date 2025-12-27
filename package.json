@@ -1,0 +1,25 @@
+{
+  "name": "fittracker-tests",
+  "version": "1.0.0",
+  "description": "Testes E2E para FitTracker",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "test:api:create": "cypress run --spec 'cypress/e2e/treinos/treinosCreate.cy.js'",
+    "test:api:read": "cypress run --spec 'cypress/e2e/treinos/treinosRead.cy.js'",
+    "test:api:update": "cypress run --spec 'cypress/e2e/treinos/treinosUpdate.cy.js'",
+    "test:api:delete": "cypress run --spec 'cypress/e2e/treinos/treinosDelete.cy.js'",
+    "test:api:all": "cypress run --spec 'cypress/e2e/treinos/*.cy.js'",
+    "test:ui:navigation": "cypress run --spec 'cypress/e2e/treinos-ui/treinosUI_Navigation.cy.js'",
+    "test:ui:create": "cypress run --spec 'cypress/e2e/treinos-ui/treinosUI_Create.cy.js'",
+    "test:ui:list": "cypress run --spec 'cypress/e2e/treinos-ui/treinosUI_List.cy.js'",
+    "test:ui:all": "cypress run --spec 'cypress/e2e/treinos-ui/*.cy.js'",
+    "test:all": "cypress run",
+    "test:smoke": "cypress run --env grepTags=@smoke"
+  },
+  "devDependencies": {
+    "@cypress/grep": "^5.0.1",
+    "@faker-js/faker": "^10.1.0",
+    "cypress": "^15.7.1"
+  }
+}

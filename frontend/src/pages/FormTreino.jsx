@@ -171,7 +171,7 @@ const FormTreino = () => {
   }
 
   return (
-    <div className="form-treino">
+    <div className="form-treino" data-cy="form-treino-page">
       <PageHeader
         titulo={isEdicao ? 'Editar Treino' : 'Novo Treino'}
         subtitulo={isEdicao ? 'Atualize os dados do treino' : 'Registre um novo treino'}
@@ -179,12 +179,12 @@ const FormTreino = () => {
       />
 
       {erro && (
-        <div className="form-erro">
+        <div className="form-erro" data-cy="form-erro">
           {erro}
         </div>
       )}
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} data-cy="form-treino">
         {/* Dados Básicos */}
         <div className="card form-section">
           <h2 className="form-section-titulo">Informações Básicas</h2>
@@ -197,6 +197,7 @@ const FormTreino = () => {
                 value={treino.tipo}
                 onChange={(e) => handleChange('tipo', e.target.value)}
                 required
+                data-cy="input-tipo"
               >
                 {TIPOS_TREINO.map(({ valor, nome }) => (
                   <option key={valor} value={valor}>{nome}</option>
@@ -212,6 +213,7 @@ const FormTreino = () => {
                 value={treino.nome}
                 onChange={(e) => handleChange('nome', e.target.value)}
                 placeholder="Ex: Peito e Tríceps"
+                data-cy="input-nome"
               />
             </div>
 
@@ -223,6 +225,7 @@ const FormTreino = () => {
                 value={treino.data}
                 onChange={(e) => handleChange('data', e.target.value)}
                 required
+                data-cy="input-data"
               />
             </div>
 
@@ -235,6 +238,7 @@ const FormTreino = () => {
                 onChange={(e) => handleChange('duracao', e.target.value)}
                 placeholder="60"
                 min="0"
+                data-cy="input-duracao"
               />
             </div>
           </div>
@@ -247,6 +251,7 @@ const FormTreino = () => {
               onChange={(e) => handleChange('observacao', e.target.value)}
               placeholder="Anotações sobre o treino..."
               rows={3}
+              data-cy="input-observacao"
             />
           </div>
         </div>
@@ -261,6 +266,7 @@ const FormTreino = () => {
               type="button"
               className="btn btn-primary"
               onClick={adicionarExercicio}
+              data-cy="btn-adicionar-exercicio"
             >
               <PlusCircle size={18} />
               Adicionar Exercício
@@ -274,13 +280,14 @@ const FormTreino = () => {
                 type="button"
                 className="btn btn-secondary"
                 onClick={adicionarExercicio}
+                data-cy="btn-primeiro-exercicio"
               >
                 <PlusCircle size={18} />
                 Adicionar primeiro exercício
               </button>
             </div>
           ) : (
-            <div className="form-exercicios-lista">
+            <div className="form-exercicios-lista" data-cy="exercicios-lista">
               {treino.exercicios.map((exercicio, exIndex) => (
                 <div key={exIndex} className="card form-exercicio-card">
                   {/* Header do Exercício */}
@@ -434,6 +441,7 @@ const FormTreino = () => {
             className="btn btn-secondary"
             onClick={() => navigate(-1)}
             disabled={salvando}
+            data-cy="btn-cancelar"
           >
             Cancelar
           </button>
@@ -441,6 +449,7 @@ const FormTreino = () => {
             type="submit"
             className="btn btn-primary"
             disabled={salvando}
+            data-cy="btn-salvar"
           >
             {salvando ? (
               <>Salvando...</>
