@@ -85,12 +85,12 @@ const ListaTreinos = () => {
   const temFiltrosAtivos = filtros.tipo || filtros.dataInicio || filtros.dataFim;
 
   return (
-    <div className="lista-treinos">
+    <div className="lista-treinos" data-cy="lista-treinos-page">
       <PageHeader
         titulo="Meus Treinos"
         subtitulo={`${paginacao.total} treino${paginacao.total !== 1 ? 's' : ''} registrado${paginacao.total !== 1 ? 's' : ''}`}
         acoes={
-          <Link to="/treinos/novo" className="btn btn-primary">
+          <Link to="/treinos/novo" className="btn btn-primary" data-cy="btn-novo-treino">
             <PlusCircle size={18} />
             Novo Treino
           </Link>
@@ -99,9 +99,10 @@ const ListaTreinos = () => {
 
       {/* Barra de Filtros */}
       <div className="lista-filtros-bar">
-        <button 
+        <button
           className={`btn ${mostrarFiltros ? 'btn-primary' : 'btn-secondary'}`}
           onClick={() => setMostrarFiltros(!mostrarFiltros)}
+          data-cy="btn-toggle-filtros"
         >
           <Filter size={18} />
           Filtros
@@ -109,7 +110,7 @@ const ListaTreinos = () => {
         </button>
 
         {temFiltrosAtivos && (
-          <button className="btn btn-ghost" onClick={limparFiltros}>
+          <button className="btn btn-ghost" onClick={limparFiltros} data-cy="btn-limpar-filtros">
             Limpar filtros
           </button>
         )}
@@ -117,13 +118,14 @@ const ListaTreinos = () => {
 
       {/* Painel de Filtros */}
       {mostrarFiltros && (
-        <div className="lista-filtros-panel card">
+        <div className="lista-filtros-panel card" data-cy="filtros-panel">
           <div className="lista-filtros-grid">
             <div className="form-group">
               <label>Tipo de Treino</label>
               <select
                 value={filtros.tipo}
                 onChange={(e) => handleFiltroChange('tipo', e.target.value)}
+                data-cy="filter-tipo"
               >
                 <option value="">Todos</option>
                 {TIPOS_TREINO.map(({ valor, nome }) => (
@@ -138,6 +140,7 @@ const ListaTreinos = () => {
                 type="date"
                 value={filtros.dataInicio}
                 onChange={(e) => handleFiltroChange('dataInicio', e.target.value)}
+                data-cy="filter-data-inicio"
               />
             </div>
 
@@ -147,6 +150,7 @@ const ListaTreinos = () => {
                 type="date"
                 value={filtros.dataFim}
                 onChange={(e) => handleFiltroChange('dataFim', e.target.value)}
+                data-cy="filter-data-fim"
               />
             </div>
           </div>
@@ -181,22 +185,23 @@ const ListaTreinos = () => {
       ) : (
         <>
           {/* Lista de Treinos */}
-          <div className="lista-treinos-cards">
+          <div className="lista-treinos-cards" data-cy="treinos-list">
             {treinos.map((treino) => (
-              <Link 
-                key={treino._id} 
+              <Link
+                key={treino._id}
                 to={`/treinos/${treino._id}`}
                 className="treino-card card"
+                data-cy="treino-card"
               >
                 <div className="treino-card-header">
-                  <TipoBadge tipo={treino.tipo} />
-                  <div className="treino-card-data">
+                  <TipoBadge tipo={treino.tipo} dataCy="tipo" />
+                  <div className="treino-card-data" data-cy="data">
                     <Calendar size={14} />
                     {formatarData(treino.data)}
                   </div>
                 </div>
 
-                <h3 className="treino-card-nome">
+                <h3 className="treino-card-nome" data-cy="nome">
                   {treino.nome || `Treino ${treino.tipo}`}
                 </h3>
 
@@ -231,7 +236,7 @@ const ListaTreinos = () => {
                 </div>
 
                 <div className="treino-card-footer">
-                  <span className={`treino-card-status ${treino.concluido ? 'concluido' : ''}`}>
+                  <span className={`treino-card-status ${treino.concluido ? 'concluido' : ''}`} data-cy="status">
                     {treino.concluido ? '✓ Concluído' : 'Em andamento'}
                   </span>
                   <ChevronRight size={18} />
@@ -242,16 +247,17 @@ const ListaTreinos = () => {
 
           {/* Paginação */}
           {paginacao.totalPaginas > 1 && (
-            <div className="lista-paginacao">
+            <div className="lista-paginacao" data-cy="pagination">
               <button
                 className="btn btn-secondary"
                 disabled={paginacao.pagina === 1}
                 onClick={() => setPaginacao(prev => ({ ...prev, pagina: prev.pagina - 1 }))}
+                data-cy="btn-pagina-anterior"
               >
                 Anterior
               </button>
-              
-              <span className="lista-paginacao-info">
+
+              <span className="lista-paginacao-info" data-cy="paginacao-info">
                 Página {paginacao.pagina} de {paginacao.totalPaginas}
               </span>
 
@@ -259,6 +265,7 @@ const ListaTreinos = () => {
                 className="btn btn-secondary"
                 disabled={paginacao.pagina === paginacao.totalPaginas}
                 onClick={() => setPaginacao(prev => ({ ...prev, pagina: prev.pagina + 1 }))}
+                data-cy="btn-pagina-proxima"
               >
                 Próxima
               </button>
