@@ -51,3 +51,4 @@ temp/
 .cache/
 .npm/
 .eslintcache
+docs/
